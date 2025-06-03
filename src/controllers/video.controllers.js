@@ -16,3 +16,6 @@ const uploadVideoCtr = async (req, res) => {
 
 }
 
+module.exports = {
+  uploadVideoCtr
+}
