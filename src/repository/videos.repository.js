@@ -1,4 +1,5 @@
 const { Users, Videos } = require("../schemas");
+const filterVideo = require("../utils/filter.videos");
 
 
 const uploadVideo = async (userMail, videoDet) => {
@@ -33,6 +34,13 @@ const getCreator = async (videoUrl) => {
   const user = await Users.findById(video.userId)
 
   return user.channelName
+}
+
+const seeVideo = async (videoUrl) => {
+  const video = await Videos.findOne({videoUrl})
+  const creator = await getCreator(videoUrl)
+
+  return filterVideo(video, creator)
 }
 
 
