@@ -25,7 +25,16 @@ const getCreatorCtr = async (req, res) => {
   })
 }
 
+const watchVideo = async (req, res) => {
+  const det = await seeVideo(req.params.videoUrl)
+  res.json({
+    msg: "Enjoy watching!",
+    video: det
+  })
+}
+
 module.exports = {
   uploadVideoCtr,
-  getCreatorCtr
+  getCreatorCtr,
+  watchVideo
 }
