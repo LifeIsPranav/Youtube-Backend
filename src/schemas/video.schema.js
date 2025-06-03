@@ -10,7 +10,8 @@ const VideoSchema = new mongoose.Schema({
   
   videoUrl: {
     type: String,
-    required: [true, "Video URL cannot be emply!"]
+    required: [true, "Video URL cannot be emply!"],
+    unique: true
   },
 
   thumbnail_url: {
