@@ -5,10 +5,10 @@ const filterVideo = require("../utils/filter.videos");
 const uploadVideo = async (userMail, videoDet) => {
 
   const { videoUrl, thumbnail_url, category, tags } = videoDet
-  const user = Users.findOne({userMail})
+  const user = await Users.findOne({email: userMail})
 
   const newVideo = new Videos({
-    userId: user.userId,
+    userId: user._id,
     videoUrl,
     thumbnail_url,
     category,
