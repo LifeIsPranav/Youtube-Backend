@@ -20,7 +20,6 @@ const getCreatorCtr = async (req, res) => {
   const vid = await seeVideo(req.params.videoUrl)
 
   res.json({
-    msg: "Hi from Generate Creator Controller",
     creatorOfVideo: vid.channelName
   })
 }
@@ -36,7 +35,7 @@ const watchVideo = async (req, res) => {
 const allVideoCtr = async (req, res) => {
   const videos = await getAllVideos()
   res.json({
-    msg: "Here are all your videos",
+    msg: "All videos 🔥",
     total: videos.length,
     videos: videos
   })
