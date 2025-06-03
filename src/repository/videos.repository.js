@@ -49,8 +49,12 @@ const getCreator = async (videoUrl) => {
 
 const seeVideo = async (videoUrl) => {
   const video = await Videos.findOne({videoUrl})
-  const creator = await getCreator(videoUrl)
+  if(!video) throw new Error("Video Not Found!")
+  
+  video.views += 1
+  await video.save()
 
+  const creator = await getCreator(videoUrl)
   return filterVideo(video, creator)
 }
 
