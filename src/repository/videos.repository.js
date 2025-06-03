@@ -24,8 +24,17 @@ const deleteVideo = async (userMail, videoUrl) => {
 
 }
 
-const updateVideo = async (userMail, videoUrl, updatedDet) => {
+const updateVideo = async (videoUrl, updatedDet) => {
+  const { thumbnail_url, category, tags } = updatedDet
 
+  const video = await Videos.findOneAndUpdate({videoUrl}, {
+    ...(thumbnail_url && {thumbnail_url}),
+    ...(category && {category}),
+    ...(tags && {tags})
+  }, {new: true})
+
+  return video
+  
 }
 
 const getCreator = async (videoUrl) => {
@@ -56,7 +65,11 @@ const checkIsOwner = async(user, videoUrl) => {
   const video = await Videos.findOne({videoUrl})
   if(!video) throw Error("No video Found!")
 
-  if(video.userId == user._id) return true
+  console.log(video.userId)
+  console.log(user._id)
+  console.log("***************")
+
+  if(video.userId.equals(user._id)) return true
   return false
 }
 
