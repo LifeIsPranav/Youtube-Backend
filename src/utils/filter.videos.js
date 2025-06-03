@@ -1,5 +1,5 @@
 const filterVideo = (video, channelName) => {
-  const videoObj = user.toObject()
+  const videoObj = video.toObject()
 
   delete videoObj.userId
   delete videoObj._id

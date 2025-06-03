@@ -47,5 +47,7 @@ const seeVideo = async (videoUrl) => {
 module.exports = {
   uploadVideo,
   deleteVideo,
-  updateVideo
+  updateVideo,
+  getCreator,
+  seeVideo
 }
