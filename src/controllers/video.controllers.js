@@ -1,4 +1,4 @@
-const { uploadVideo, seeVideo } = require("../repository/videos.repository")
+const { uploadVideo, seeVideo, getAllVideos } = require("../repository/videos.repository")
 const { VideoSchemaValidator } = require("../validators/video.validators")
 
 
@@ -33,8 +33,18 @@ const watchVideo = async (req, res) => {
   })
 }
 
+const allVideoCtr = async (req, res) => {
+  const videos = await getAllVideos()
+  res.json({
+    msg: "Here are all your videos",
+    total: videos.length,
+    videos: videos
+  })
+}
+
 module.exports = {
   uploadVideoCtr,
   getCreatorCtr,
-  watchVideo
+  watchVideo,
+  allVideoCtr
 }

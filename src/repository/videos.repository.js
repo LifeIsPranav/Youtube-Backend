@@ -43,11 +43,21 @@ const seeVideo = async (videoUrl) => {
   return filterVideo(video, creator)
 }
 
+const getAllVideos = async () => {
+  const videosArr = await Videos.find({})
+  const videos = await Promise.all(
+    videosArr.map((video) => seeVideo(video.videoUrl))
+  )
+  
+  return videos
+}
+
 
 module.exports = {
   uploadVideo,
   deleteVideo,
   updateVideo,
   getCreator,
-  seeVideo
+  seeVideo,
+  getAllVideos
 }
