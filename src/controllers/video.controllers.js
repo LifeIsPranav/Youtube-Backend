@@ -1,4 +1,4 @@
-const { uploadVideo, seeVideo, getAllVideos, updateVideo, deleteVideo } = require("../repository/videos.repository")
+const { uploadVideo, seeVideo, getAllVideos, updateVideo, deleteVideo, getMyVideos } = require("../repository/videos.repository")
 const { VideoSchemaValidator } = require("../validators/video.validators")
 
 
@@ -65,6 +65,13 @@ const deleteVideoCtr = async (req, res) => {
 
 const getMyVideosCtr = async (req, res) => {
 
+  const videos = await getMyVideos(req.email)
+
+  res.json({
+    msg: "Here are all your Videos: ✌️",
+    total: videos.length,
+    videos: videos
+  })
 }
 
 const getVideosByCategoryCtr = async (req, res) => {

@@ -1,5 +1,6 @@
 const { Users, Videos } = require("../schemas");
 const filterVideo = require("../utils/filter.videos");
+const { findUser } = require("./users.repository");
 
 
 const uploadVideo = async (userMail, videoDet) => {
@@ -62,7 +63,7 @@ const getAllVideos = async () => {
   return videos
 }
 
-const checkIsOwner = async(user, videoUrl) => {
+const checkIsOwner = async (user, videoUrl) => {
   const video = await Videos.findOne({videoUrl})
   if(!video) throw Error("No video Found!")
 
@@ -74,6 +75,13 @@ const checkIsOwner = async(user, videoUrl) => {
   return false
 }
 
+const getMyVideos = async (userMail) => {
+  const user = await findUser(userMail)
+  const userId = user._id
+
+  const videos = Videos.find({userId})
+  return videos
+}
 
 module.exports = {
   uploadVideo,
@@ -82,5 +90,6 @@ module.exports = {
   getCreator,
   seeVideo,
   getAllVideos,
-  checkIsOwner
+  checkIsOwner,
+  getMyVideos
 }
