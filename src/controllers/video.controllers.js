@@ -1,4 +1,4 @@
-const { uploadVideo, seeVideo, getAllVideos, updateVideo, deleteVideo, getMyVideos, getVideosOnCategory } = require("../repository/videos.repository")
+const { uploadVideo, seeVideo, getAllVideos, updateVideo, deleteVideo, getMyVideos, getVideosOnCategory, getVideosOnTag } = require("../repository/videos.repository")
 const { VideoSchemaValidator } = require("../validators/video.validators")
 
 
@@ -84,7 +84,12 @@ const getVideosByCategoryCtr = async (req, res) => {
 }
 
 const getVideosByTagCtr = async (req, res) => {
-
+  const videos = await getVideosOnTag(req.params.tag)
+  
+  res.json({
+    msg: `Here are all videos of Tag: ${req.params.tag}`,
+    videos: videos
+  })
 }
 
 

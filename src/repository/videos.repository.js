@@ -87,6 +87,10 @@ const getVideosOnCategory = async (category) => {
   return await Videos.find({category})
 }
 
+const getVideosOnTag = async (tag) => {
+  return await Videos.find({tags: tag})
+}
+
 module.exports = {
   uploadVideo,
   deleteVideo,
@@ -96,5 +100,6 @@ module.exports = {
   getAllVideos,
   checkIsOwner,
   getMyVideos,
-  getVideosOnCategory
+  getVideosOnCategory,
+  getVideosOnTag
 }
