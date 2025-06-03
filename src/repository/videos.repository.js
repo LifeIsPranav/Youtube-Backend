@@ -52,6 +52,14 @@ const getAllVideos = async () => {
   return videos
 }
 
+const checkIsOwner = async(user, videoUrl) => {
+  const video = await Videos.findOne({videoUrl})
+  if(!video) throw Error("No video Found!")
+
+  if(video.userId == user._id) return true
+  return false
+}
+
 
 module.exports = {
   uploadVideo,
@@ -59,5 +67,6 @@ module.exports = {
   updateVideo,
   getCreator,
   seeVideo,
-  getAllVideos
+  getAllVideos,
+  checkIsOwner
 }

@@ -18,8 +18,10 @@ videoRouter.use(authMiddleware)
 
 videoRouter.get('/myVideos', getMyVideosCtr)
 videoRouter.post('/upload', uploadVideoCtr)
+
+
 videoRouter.put('/update/:videoURL', uploadVideoCtr)
-videoRouter.delete('/delete', deleteVideoCtr)
+videoRouter.delete('/delete/:videoURL', deleteVideoCtr)
 
 videoRouter.use(errorMiddleware)
 
