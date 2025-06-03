@@ -83,6 +83,10 @@ const getMyVideos = async (userMail) => {
   return videos
 }
 
+const getVideosOnCategory = async (category) => {
+  return await Videos.find({category})
+}
+
 module.exports = {
   uploadVideo,
   deleteVideo,
@@ -91,5 +95,6 @@ module.exports = {
   seeVideo,
   getAllVideos,
   checkIsOwner,
-  getMyVideos
+  getMyVideos,
+  getVideosOnCategory
 }

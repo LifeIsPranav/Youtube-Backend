@@ -9,10 +9,10 @@ const myVideosMiddleware = require('../middlewares/auth.myvideos.middleware')
 const videoRouter = express.Router()
 
 videoRouter.get('/all', allVideoCtr)
-videoRouter.get('/categories/:category', getVideosByCategoryCtr)
 videoRouter.get('/watch/:videoUrl', watchVideo)
-videoRouter.get('/creator/:videoUrl', getCreatorCtr)
 videoRouter.get('/tags/:tag', getVideosByTagCtr)
+videoRouter.get('/creator/:videoUrl', getCreatorCtr)
+videoRouter.get('/categories/:category', getVideosByCategoryCtr)
 
 
 videoRouter.use(authMiddleware)
