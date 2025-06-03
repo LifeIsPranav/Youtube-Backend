@@ -29,5 +29,5 @@ A Node.js backend for managing YouTube-related functionalities (such as data ret
 ### Installation
 
 ```bash
-git clone https://github.com/yourusername/YT-API.git
+git clone https://github.com/LifeIsPranav/Youtube-Backend.git
 npm install
