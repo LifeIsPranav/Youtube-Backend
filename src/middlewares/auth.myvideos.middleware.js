@@ -1,4 +1,6 @@
-const { checkIsOwner } = require("../repository/videos.repository")
+const { findUser } = require("../repository/users.repository");
+const { checkIsOwner } = require("../repository/videos.repository");
+const getDetailsOfUserWOPassword = require("../utils/getDetailsWOpassword.users");
 
 const myVideosMiddleware = async (req, res, next) => {
   const user = getDetailsOfUserWOPassword(await findUser(req.email))
@@ -8,3 +10,5 @@ const myVideosMiddleware = async (req, res, next) => {
   req.userId = user._id
   next()
 }
+
+module.exports = myVideosMiddleware

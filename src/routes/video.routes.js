@@ -1,8 +1,9 @@
 const express = require('express')
 
-const { uploadVideoCtr, getCreatorCtr, watchVideo, allVideoCtr, deleteVideoCtr, getMyVideosCtr, getVideosByCategoryCtr, getVideosByTagCtr } = require('../controllers/video.controllers')
-const authMiddleware = require('../middlewares/auth.middleware')
+const { uploadVideoCtr, getCreatorCtr, watchVideo, allVideoCtr, deleteVideoCtr, getMyVideosCtr, getVideosByCategoryCtr, getVideosByTagCtr, updateVideoCtr } = require('../controllers/video.controllers')
 const { errorMiddleware } = require('../error/errormiddleware')
+const authMiddleware = require('../middlewares/auth.middleware')
+const myVideosMiddleware = require('../middlewares/auth.myvideos.middleware')
 
 
 const videoRouter = express.Router()
@@ -19,9 +20,10 @@ videoRouter.use(authMiddleware)
 videoRouter.get('/myVideos', getMyVideosCtr)
 videoRouter.post('/upload', uploadVideoCtr)
 
+videoRouter.use(myVideosMiddleware)
 
-videoRouter.put('/update/:videoURL', uploadVideoCtr)
-videoRouter.delete('/delete/:videoURL', deleteVideoCtr)
+videoRouter.put('/update/:videoUrl', updateVideoCtr)
+videoRouter.delete('/delete/:videoUrl', deleteVideoCtr)
 
 videoRouter.use(errorMiddleware)
 

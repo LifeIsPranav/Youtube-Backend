@@ -42,7 +42,9 @@ const allVideoCtr = async (req, res) => {
 }
 
 const updateVideoCtr = async (req, res) => {
-
+  res.json({
+    msg: "hi from Update videoCTR"
+  })
 }
 
 const deleteVideoCtr = async (req, res) => {
