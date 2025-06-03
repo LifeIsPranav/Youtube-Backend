@@ -42,9 +42,35 @@ const allVideoCtr = async (req, res) => {
   })
 }
 
+const updateVideoCtr = async (req, res) => {
+
+}
+
+const deleteVideoCtr = async (req, res) => {
+
+}
+
+const getMyVideosCtr = async (req, res) => {
+
+}
+
+const getVideosByCategoryCtr = async (req, res) => {
+
+}
+
+const getVideosByTagCtr = async (req, res) => {
+
+}
+
+
 module.exports = {
   uploadVideoCtr,
   getCreatorCtr,
   watchVideo,
-  allVideoCtr
+  allVideoCtr,
+  updateVideoCtr,
+  deleteVideoCtr,
+  getMyVideosCtr,
+  getVideosByCategoryCtr,
+  getVideosByTagCtr
 }

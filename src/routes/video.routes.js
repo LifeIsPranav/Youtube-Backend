@@ -9,8 +9,8 @@ const videoRouter = express.Router()
 
 videoRouter.use(authMiddleware)
 videoRouter.post('/upload', uploadVideoCtr)
-videoRouter.get('/watch/:videoUrl', watchVideo)
 videoRouter.get('/all', allVideoCtr)
+videoRouter.get('/watch/:videoUrl', watchVideo)
 videoRouter.get('/:videoUrl', getCreatorCtr)
 videoRouter.use(errorMiddleware)
 
