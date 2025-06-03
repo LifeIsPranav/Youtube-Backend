@@ -20,8 +20,9 @@ const uploadVideo = async (userMail, videoDet) => {
   return newVideo
 }
 
-const deleteVideo = async (userMail, videoUrl) => {
-
+const deleteVideo = async (videoUrl) => {
+  const video = await Videos.findOneAndDelete({videoUrl})
+  if(!video) throw new Error("No such Video Found!")
 }
 
 const updateVideo = async (videoUrl, updatedDet) => {

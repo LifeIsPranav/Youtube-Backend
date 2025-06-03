@@ -1,4 +1,4 @@
-const { uploadVideo, seeVideo, getAllVideos, updateVideo } = require("../repository/videos.repository")
+const { uploadVideo, seeVideo, getAllVideos, updateVideo, deleteVideo } = require("../repository/videos.repository")
 const { VideoSchemaValidator } = require("../validators/video.validators")
 
 
@@ -45,7 +45,7 @@ const updateVideoCtr = async (req, res) => {
 
   const det = await updateVideo(req.videoUrl, req.body)
   console.log("Video Updated Successfully")
-  
+
   res.json({
     msg: "Video Updated Successfully",
     newDetails: det
@@ -55,6 +55,12 @@ const updateVideoCtr = async (req, res) => {
 
 const deleteVideoCtr = async (req, res) => {
 
+  await deleteVideo(req.videoUrl);
+  console.log("Video Deleted Sucessfully ✅")
+
+  res.json({
+    msg: "Video Deleted Successfully!"
+  })
 }
 
 const getMyVideosCtr = async (req, res) => {
