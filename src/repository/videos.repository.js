@@ -104,6 +104,11 @@ const likeVideo = async (userMail, videoUrl) => {
 
   if(video.likedBy.includes(user._id)) return false
 
+  if(video.dislikedBy.includes(user._id)){
+    video.dislikedBy.pull(user._id)
+    video.dislikes = video.dislikedBy.length
+  }
+
   video.likedBy.push(user._id)
   video.likes = video.likedBy.length
 
