@@ -97,7 +97,10 @@ const likeVideoCtr = async (req, res) => {
     console.log("You have already Liked this Video!")
     res.json({
         msg: "You have already Liked this Video!"
-  })}
+    })
+
+    return
+  }
 
   console.log("Liked Video Successfully!")
 
