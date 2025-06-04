@@ -93,7 +93,12 @@ const getVideosByTagCtr = async (req, res) => {
 }
 
 const likeVideoCtr = async (req, res) => {
-  await likeVideo(req.email, req.params.videoUrl)
+  if(!await likeVideo(req.email, req.params.videoUrl)){
+    console.log("You have already Liked this Video!")
+    res.json({
+        msg: "You have already Liked this Video!"
+  })}
+
   console.log("Liked Video Successfully!")
 
   res.json({

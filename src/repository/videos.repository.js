@@ -102,12 +102,13 @@ const likeVideo = async (userMail, videoUrl) => {
   const video = await Videos.findOne({videoUrl})
   if (!video) throw new Error("Video not found!");
 
-  if(video.likedBy.includes(user._id)) return
+  if(video.likedBy.includes(user._id)) return false
 
   video.likedBy.push(user._id)
   video.likes = video.likedBy.length
 
   await video.save()
+  return true
 }
 
 module.exports = {
