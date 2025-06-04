@@ -116,6 +116,27 @@ const likeVideo = async (userMail, videoUrl) => {
   return true
 }
 
+const dislikeVideo = async (userMail, videoUrl) => {
+  const user = await Users.findOne({email: userMail})
+  if (!user) throw new Error("User not found!");
+
+  const video = await Videos.findOne({videoUrl})
+  if (!video) throw new Error("Video not found!");
+
+  if(video.dislikedBy.includes(user._id)) return false
+
+  if(video.likedBy.includes(user._id)){
+    video.likedBy.pull(user._id)
+    video.likes = video.likedBy.length
+  }
+
+  video.dislikedBy.push(user._id)
+  video.dislikes = video.dislikedBy.length
+
+  await video.save()
+  return true
+}
+
 module.exports = {
   uploadVideo,
   deleteVideo,
@@ -127,5 +148,6 @@ module.exports = {
   getMyVideos,
   getVideosOnCategory,
   getVideosOnTag,
-  likeVideo
+  likeVideo,
+  dislikeVideo
 }

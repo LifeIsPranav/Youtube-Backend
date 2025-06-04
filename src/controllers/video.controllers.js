@@ -1,4 +1,4 @@
-const { uploadVideo, seeVideo, getAllVideos, updateVideo, deleteVideo, getMyVideos, getVideosOnCategory, getVideosOnTag, likeVideo } = require("../repository/videos.repository")
+const { uploadVideo, seeVideo, getAllVideos, updateVideo, deleteVideo, getMyVideos, getVideosOnCategory, getVideosOnTag, likeVideo, dislikeVideo } = require("../repository/videos.repository")
 const { VideoSchemaValidator } = require("../validators/video.validators")
 
 
@@ -109,6 +109,24 @@ const likeVideoCtr = async (req, res) => {
   })
 }
 
+const dislikeVideoCtr = async (req, res) => {
+  if(!await dislikeVideo(req.email, req.params.videoUrl)){
+    console.log("You have already Disliked this Video!")
+    res.json({
+        msg: "You have already Disliked this Video!"
+    })
+
+    return
+  }
+
+  console.log("👎 Disliked Video Successfully!")
+
+  res.json({
+    msg: "👎 Disliked Video Successfully!"
+  })
+}
+
+
 module.exports = {
   uploadVideoCtr,
   getCreatorCtr,
@@ -119,5 +137,6 @@ module.exports = {
   getMyVideosCtr,
   getVideosByCategoryCtr,
   getVideosByTagCtr,
-  likeVideoCtr
+  likeVideoCtr,
+  dislikeVideoCtr
 }
