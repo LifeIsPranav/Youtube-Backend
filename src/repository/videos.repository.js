@@ -95,6 +95,21 @@ const getVideosOnTag = async (tag) => {
   return await Videos.find({tags: tag})
 }
 
+const likeVideo = async (userMail, videoUrl) => {
+  const user = await Users.findOne({email: userMail})
+  if (!user) throw new Error("User not found!");
+
+  const video = await Videos.findOne({videoUrl})
+  if (!video) throw new Error("Video not found!");
+
+  if(video.likedBy.includes(user._id)) return
+
+  video.likedBy.push(user._id)
+  video.likes = video.likedBy.length
+
+  await video.save()
+}
+
 module.exports = {
   uploadVideo,
   deleteVideo,
@@ -105,5 +120,6 @@ module.exports = {
   checkIsOwner,
   getMyVideos,
   getVideosOnCategory,
-  getVideosOnTag
+  getVideosOnTag,
+  likeVideo
 }

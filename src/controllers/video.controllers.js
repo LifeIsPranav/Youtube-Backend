@@ -1,4 +1,4 @@
-const { uploadVideo, seeVideo, getAllVideos, updateVideo, deleteVideo, getMyVideos, getVideosOnCategory, getVideosOnTag } = require("../repository/videos.repository")
+const { uploadVideo, seeVideo, getAllVideos, updateVideo, deleteVideo, getMyVideos, getVideosOnCategory, getVideosOnTag, likeVideo } = require("../repository/videos.repository")
 const { VideoSchemaValidator } = require("../validators/video.validators")
 
 
@@ -92,6 +92,14 @@ const getVideosByTagCtr = async (req, res) => {
   })
 }
 
+const likeVideoCtr = async (req, res) => {
+  await likeVideo(req.email, req.params.videoUrl)
+  console.log("Liked Video Successfully!")
+
+  res.json({
+    msg: "Liked Video Successfully!"
+  })
+}
 
 module.exports = {
   uploadVideoCtr,
@@ -102,5 +110,6 @@ module.exports = {
   deleteVideoCtr,
   getMyVideosCtr,
   getVideosByCategoryCtr,
-  getVideosByTagCtr
+  getVideosByTagCtr,
+  likeVideoCtr
 }
