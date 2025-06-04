@@ -18,7 +18,15 @@ const addNewComment = async (email, videoUrl, commentStr) => {
 
 };
 
+const getCommentsOnVideo = async (videoUrl) => {
+  const video = await Videos.findOne({videoUrl})
+  if(!video) throw new Error("Video Not Found!")
+
+  return await Comments.find({videoId: video._id}) 
+}
+
 
 module.exports = {
-  addNewComment
+  addNewComment,
+  getCommentsOnVideo
 }

@@ -5,8 +5,7 @@ const CommentSchema = new mongoose.Schema({
   videoId: {
     type: mongoose.Types.ObjectId,
     ref: 'Video',
-    required: [true, "Video ID cannot be emply!"],
-    unique: true
+    required: [true, "Video ID cannot be emply!"]
   },
 
   commentText: {

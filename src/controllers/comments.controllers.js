@@ -1,4 +1,4 @@
-const { addNewComment } = require("../repository/comments.repository")
+const { addNewComment, getCommentsOnVideo } = require("../repository/comments.repository")
 const { CommentSchemaValidator } = require("../validators/comments.validators");
 
 const addCommentController = async (req, res) => {
@@ -14,7 +14,17 @@ const addCommentController = async (req, res) => {
   })
 }
 
+const getCommentsOnVideoCtr = async (req, res) => {
+
+  const comments = await getCommentsOnVideo(req.params.videoUrl)
+  res.json({
+    msg: `Here are all comments on ${req.params.videoUrl}`,
+    comments: comments
+  })
+}
+
 
 module.exports = {
-  addCommentController
+  addCommentController,
+  getCommentsOnVideoCtr
 }
